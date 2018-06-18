@@ -1,6 +1,6 @@
-package Util;
+package util;
 
-import Steps.BaseSteps;
+import steps.BaseSteps;
 import org.junit.runner.notification.Failure;
 import ru.yandex.qatools.allure.junit.AllureRunListener;
 
