@@ -6,15 +6,16 @@ import java.util.HashMap;
 
 
     public class Task3Test extends BaseSteps {
-            HashMap<String, String> testData = new HashMap<>();
+
             @Test
-            @Title("Оформление страхования")
+            @Title("Заявка на страхование")
             public void Test(){
                 MainPageSteps mainPageSteps = new MainPageSteps();
                 InsurancePageSteps insurancePageSteps =new InsurancePageSteps();
-                ProgramChoicePageSteps blanckPage1Steps = new ProgramChoicePageSteps();
-                BlanckPageSteps blanckPage2Steps = new BlanckPageSteps();
-
+                ProgramChoicePageSteps programChoicePageSteps = new ProgramChoicePageSteps();
+                BlanckPageSteps blanckPageSteps = new BlanckPageSteps();
+                
+                HashMap<String, String> testData = new HashMap<>();
                 // Фамилию и Имя, Дату рождения застрахованных
                 testData.put("Застрахованные: Фамилия", "Smirnova");
                 testData.put("Застрахованные: Имя", "Anna");
@@ -35,8 +36,8 @@ import java.util.HashMap;
 
                 // Контактные данные не заполняем
 
-                mainPageSteps.stepSelectMainMenu("Страхование");
-                mainPageSteps.stepSelectMainMenu("Путешествия и покупки");
+              // mainPageSteps.stepSelectMainMenu("Страхование");
+              //  mainPageSteps.stepSelectMainMenu("Путешествия и покупки");
 
                 insurancePageSteps.stepCheckTitle("Страхование путешественников");
                 insurancePageSteps.stepSendButton();
@@ -45,13 +46,13 @@ import java.util.HashMap;
                     driver.switchTo().window(winHandle);
                 }
 
-                blanckPage1Steps.selectSum();
-                blanckPage1Steps.issueButton();
+                programChoicePageSteps.selectSum();
+                programChoicePageSteps.issueButton();
 
-                blanckPage2Steps.stepFillFields(testData);
+                blanckPageSteps.stepFillFields(testData);
                 //    testData.put("Дата выдачи паспорта", "12.05.2010");
-                blanckPage2Steps.checkFillFields(testData);
-                blanckPage2Steps.continueButton();
-                blanckPage2Steps.stepCheckMassegeError("Заполнены не все обязательные поля");
+                blanckPageSteps.checkFillFields(testData);
+                blanckPageSteps.continueButton();
+                blanckPageSteps.stepCheckMassegeError("Заполнены не все обязательные поля");
             }
         }
