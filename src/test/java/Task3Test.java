@@ -4,7 +4,6 @@ import ru.yandex.qatools.allure.annotations.Title;
 import java.util.HashMap;
 
 
-
     public class Task3Test extends BaseSteps {
 
             @Test
@@ -36,8 +35,8 @@ import java.util.HashMap;
 
                 // Контактные данные не заполняем
 
-              // mainPageSteps.stepSelectMainMenu("Страхование");
-              //  mainPageSteps.stepSelectMainMenu("Путешествия и покупки");
+                mainPageSteps.stepSelectMainMenu("Страхование");
+                mainPageSteps.stepSelectSubMenu("Путешествия и покупки");
 
                 insurancePageSteps.stepCheckTitle("Страхование путешественников");
                 insurancePageSteps.stepSendButton();
@@ -53,6 +52,6 @@ import java.util.HashMap;
                 //    testData.put("Дата выдачи паспорта", "12.05.2010");
                 blanckPageSteps.checkFillFields(testData);
                 blanckPageSteps.continueButton();
-                blanckPageSteps.stepCheckMassegeError("Заполнены не все обязательные поля");
+              //  blanckPageSteps.stepCheckMassegeError("Заполнены не все обязательные поля");
             }
         }

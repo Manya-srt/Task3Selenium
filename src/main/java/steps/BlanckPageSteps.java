@@ -3,7 +3,7 @@ package steps;
 import pages.BlanckPage;
 import ru.yandex.qatools.allure.annotations.Step;
 import org.openqa.selenium.WebElement;
-import pages.ParametrPage;
+
 
 import java.util.HashMap;
 import static org.junit.Assert.assertEquals;
@@ -11,8 +11,8 @@ import static org.junit.Assert.assertTrue;
 
 public class BlanckPageSteps extends BaseSteps {
     @Step("Поле {0} заполняется значением {1}")
-    public void stepFillField(String fieldName, String value) {
-        new BlanckPage(driver).fillField(fieldName, value);
+    public void stepFillField(String field, String value) {
+        new BlanckPage(driver).fillField(field, value);
     }
 
     @Step("Заполняются поля:")
@@ -44,9 +44,9 @@ public class BlanckPageSteps extends BaseSteps {
         new BlanckPage(driver).continueButton.click();
     }
 
-    @Step("Выполнена проверка наличия ошибки на странице")
-    public void checkFieldData (String expecteErrorMassage) {
+    //@Step("Выполнена проверка наличия ошибки на странице")
+   /* public void checkFieldData (String expecteErrorMassage) {
         String actualErrorMassage = new BlanckPage(driver).errorMassage.getText();
         assertEquals(String.format("Заголовок равен [%s]. Ожидалось - [%s]", actualErrorMassage, expecteErrorMassage), expecteErrorMassage, actualErrorMassage);
-    }
+    }*/
 }

@@ -1,6 +1,5 @@
 package pages;
 
-import steps.BaseSteps;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,9 +16,9 @@ public class InsurancePage {
     @FindBy(xpath = "//div[@data-pid='SBRF-TEXT-2247407']//a[contains(text(),'Оформить онлайн')]")
     public WebElement issueButtonClick;
 
-    public InsurancePage(BaseSteps.getDriver()) {
-        PageFactory.initElements(BaseSteps.getDriver(), this);
-        Wait<WebDriver> wait = new WebDriverWait(BaseSteps.getDriver(), 40, 1000);
+    public InsurancePage(WebDriver driver) {
+        PageFactory.initElements(driver, this);
+        Wait<WebDriver> wait = new WebDriverWait(driver, 40, 1000);
         wait.until(ExpectedConditions.visibilityOf(issueButtonClick));
     }
 }
