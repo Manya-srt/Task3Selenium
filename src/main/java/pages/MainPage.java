@@ -1,23 +1,21 @@
 package pages;
 
-import org.openqa.selenium.WebDriver;
-import steps.BaseSteps;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import steps.BaseSteps;
 
 public class MainPage {
-    WebDriver driver;
+
     @FindBy(xpath = "//ul[@class='lg-menu__list']")
     WebElement mainMenu;
 
-    @FindBy(xpath = "//ul[contains(@class,'lg-menu__list')]//li[6]//div[@class='kitt-row']//div[1]//ul")
+    @FindBy(xpath = "(//div[@class='lg-menu__sub'])[6]")
     WebElement subMenu;
 
-    public MainPage(WebDriver driver){
-        PageFactory.initElements(driver, this);
-        this.driver = driver;
+    public MainPage(){
+        PageFactory.initElements(BaseSteps.getDriver(), this);
     }
 
     public void selectMainMenu(String menuItem){
@@ -25,6 +23,6 @@ public class MainPage {
     }
 
     public void selectSubMenu(String menuItem) {
-        subMenu.findElement(By.xpath(".//a[contains(text(),'" + menuItem + "')]")).click();
+        subMenu.findElement(By.xpath("//li//a[contains(text(),'"+menuItem+"')]")).click();
     }
 }

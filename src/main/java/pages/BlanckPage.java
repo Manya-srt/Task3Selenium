@@ -1,17 +1,15 @@
 package pages;
 
-import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.support.ui.Wait;
 
 public class BlanckPage {
-    @FindBy(xpath = "//span [contains(text(),'Оформление')]")
-    public WebElement blanck_name;
+
+    public BlanckPage(WebDriver driver) {
+        PageFactory.initElements(driver, this);
+    }
 
     @FindBy(name = "insured0_surname")
     public WebElement insured0_surname;
@@ -34,9 +32,6 @@ public class BlanckPage {
     @FindBy(name = "birthDate")
     public WebElement birthDate;
 
-    @FindBy(name = "female")
-    public WebElement female;
-
     @FindBy(name = "passport_series")
     public WebElement passport_series;
 
@@ -49,15 +44,7 @@ public class BlanckPage {
     @FindBy(name = "issuePlace")
     public WebElement issuePlace;
 
-    @FindBy(xpath = "//span[contains(text(),'Продолжить')]")
-    public WebElement continueButton;
 
-    public BlanckPage(WebDriver driver) {
-        PageFactory.initElements(driver, this);
-        Wait<WebDriver> wait = new WebDriverWait(driver, 10, 1000);
-        wait.until(ExpectedConditions.visibilityOf(blanck_name));
-        wait.until(ExpectedConditions.visibilityOf(continueButton));
-    }
 
     public void fillField(String fieldName, String value) {
         switch (fieldName) {
@@ -82,9 +69,6 @@ public class BlanckPage {
             case "Дата рождения":
                 fillField(birthDate, value);
                 break;
-            case "Пол":
-                fillField(female, value);
-                break;
             case "Серия паспорта":
                 fillField(passport_series, value);
                 break;
@@ -96,10 +80,15 @@ public class BlanckPage {
                 break;
             case "Место выдачи":
                 fillField(issuePlace, value);
-                break;
+            break;
             default:
                 throw new AssertionError("Поле '" + fieldName + "' не объявлено на странице");
         }
+    }
+
+    public void fillField(WebElement element, String value) {
+        element.clear();
+        element.sendKeys(value);
     }
 
     public String getFillField(String fieldName) {
@@ -118,8 +107,6 @@ public class BlanckPage {
                 return middlename.getAttribute("value");
             case "Дата рождения":
                 return birthDate.getAttribute("value");
-            case "Пол":
-                return female.getAttribute("value");
             case "Серия паспорта":
                 return passport_series.getAttribute("value");
             case "Номер паспорта":
@@ -132,12 +119,9 @@ public class BlanckPage {
         throw new AssertionError("Поле не объявлено на странице");
     }
 
-    public void checkFieldData(String field, String value) {
-        Assert.assertEquals(value, getFillField(field));
+    @FindBy(xpath = "//span[contains(text(),'Продолжить')]")
+    public WebElement continueButton;
 
-    }
-    public void fillField(WebElement element, String value) {
-        element.clear();
-        element.sendKeys(value);
-    }
+    @FindBy(xpath = "//SPAN[@class='b-text-field-error'][text()='Номер телефона вводится в 10-ти значном формате']")
+    public WebElement phone;
 }

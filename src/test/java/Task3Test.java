@@ -44,7 +44,8 @@ import java.util.HashMap;
             insurancePageSteps.stepSendButton();
             insurancePageSteps.switchWindow();
 
-            programChoicePageSteps.selectSum();
+
+            programChoicePageSteps.selectSum("Минимальная");
             programChoicePageSteps.stepIssueButton();
 
 

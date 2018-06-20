@@ -1,17 +1,17 @@
 package steps;
 
 import pages.ProgramChoicePage;
-import org.openqa.selenium.WebElement;
 import ru.yandex.qatools.allure.annotations.Step;
 
 public class ProgramChoicePageSteps extends BaseSteps {
+
     @Step("Выбор суммы страховой защиты")
-    public void selectSum (){
+    public void selectSum (String menuItem){
         new ProgramChoicePage(driver).summa.click();
     }
 
-    @Step("Нажатие кнопки - Отправить")
-    public void issueButton(){
+    @Step("Нажатие кнопки - Оформить")
+    public void stepIssueButton(){
         new ProgramChoicePage(driver).issueButton.click();
     }
 }
