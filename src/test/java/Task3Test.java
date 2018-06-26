@@ -6,17 +6,19 @@ import java.util.HashMap;
 
     public class Task3Test extends BaseSteps {
 
-        MainPageSteps mainPageSteps = new MainPageSteps();
-        InsurancePageSteps insurancePageSteps =new InsurancePageSteps();
-        ProgramChoicePageSteps programChoicePageSteps = new ProgramChoicePageSteps();
-        BlanckPageSteps blanckPageSteps = new BlanckPageSteps();
 
-
-        HashMap<String, String> testData = new HashMap<>();
 
         @Title("Заявка на страхование")
         @Test
         public void Test(){
+
+            MainPageSteps mainPageSteps = new MainPageSteps();
+            InsurancePageSteps insurancePageSteps =new InsurancePageSteps();
+            ProgramChoicePageSteps programChoicePageSteps = new ProgramChoicePageSteps();
+            BlanckPageSteps blanckPageSteps = new BlanckPageSteps();
+
+
+            HashMap<String, String> testData = new HashMap<>();
 
             // Фамилию и Имя, Дату рождения застрахованных
             testData.put("Застрахованные: Фамилия", "Smirnova");

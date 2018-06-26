@@ -9,7 +9,6 @@ import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import steps.BaseSteps;
 
-import java.util.Set;
 
 
 public class InsurancePage {
@@ -28,12 +27,8 @@ public class InsurancePage {
         wait.until(ExpectedConditions.visibilityOf(issueButtonClick));
     }
     public void switchWindow() {
-        String parentWindow = BaseSteps.getDriver().getWindowHandle();
-        Set<String> handles =  BaseSteps.getDriver().getWindowHandles();
-        for(String windowHandle  : handles) {
-            if (!windowHandle.equals(parentWindow)) {
-                BaseSteps.getDriver().switchTo().window(windowHandle);
-            }
+        for (String handle : BaseSteps.getDriver().getWindowHandles()){
+            BaseSteps.getDriver().switchTo().window(handle);
         }
     }
 }
