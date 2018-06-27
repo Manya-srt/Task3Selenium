@@ -6,19 +6,16 @@ import java.util.HashMap;
 
     public class Task3Test extends BaseSteps {
 
+        MainPageSteps mainPageSteps = new MainPageSteps();
+        InsurancePageSteps insurancePageSteps =new InsurancePageSteps();
+        ProgramChoicePageSteps programChoicePageSteps = new ProgramChoicePageSteps();
+        BlanckPageSteps blanckPageSteps = new BlanckPageSteps();
 
+        HashMap<String, String> testData = new HashMap<>();
 
         @Title("Заявка на страхование")
         @Test
         public void Test(){
-
-            MainPageSteps mainPageSteps = new MainPageSteps();
-            InsurancePageSteps insurancePageSteps =new InsurancePageSteps();
-            ProgramChoicePageSteps programChoicePageSteps = new ProgramChoicePageSteps();
-            BlanckPageSteps blanckPageSteps = new BlanckPageSteps();
-
-
-            HashMap<String, String> testData = new HashMap<>();
 
             // Фамилию и Имя, Дату рождения застрахованных
             testData.put("Застрахованные: Фамилия", "Smirnova");
@@ -46,14 +43,12 @@ import java.util.HashMap;
             insurancePageSteps.stepSendButton();
             insurancePageSteps.switchWindow();
 
-
             programChoicePageSteps.selectSum("Минимальная");
             programChoicePageSteps.stepIssueButton();
-
 
             blanckPageSteps.stepFillFields(testData);
             blanckPageSteps.stepCheckFillFields(testData);
             blanckPageSteps.continueButton();
-            blanckPageSteps.stepPhone("Номер телефона вводится в 10-ти значном формате");
+            blanckPageSteps.checkErrorMessageField("Заполнены не все обязательные поля");
         }
     }

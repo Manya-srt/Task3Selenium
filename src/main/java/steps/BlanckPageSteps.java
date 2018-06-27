@@ -4,6 +4,7 @@ import pages.BlanckPage;
 import ru.yandex.qatools.allure.annotations.Step;
 import java.util.HashMap;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class BlanckPageSteps extends BaseSteps {
@@ -30,16 +31,15 @@ public class BlanckPageSteps extends BaseSteps {
         fields.forEach(this::stepCheckFillField);
     }
 
-    @Step("текст ошибка о пустых контактных данных - {0}")
-    public void stepPhone(String expectedPhone){
-        String actualPhone = new BlanckPage(driver).phone.getText();
-        assertTrue(String.format("Заголовок равен [%s]. Ожидалось - [%s]",
-                actualPhone, expectedPhone), actualPhone.contains(expectedPhone));
-    }
-
     @Step("Выполнено нажатие на кнопку - Продолжить")
     public void continueButton() {
         new BlanckPage(driver).continueButton.click();
     }
 
+    @Step("Выполнена проверка наличия ошибки на странице")
+    public void checkErrorMessageField(String expecteErrorMessage) {
+        String actualErrorMessage = new BlanckPage(driver).errorMessage.getText();
+        assertEquals(String.format("Заголовок равен [%s]. Ожидалось - [%s]", actualErrorMessage, expecteErrorMessage),
+                expecteErrorMessage, actualErrorMessage);
+    }
 }

@@ -6,16 +6,13 @@ import ru.yandex.qatools.allure.annotations.Attachment;
 import steps.BaseSteps;
 
 public class AllureListener extends ru.yandex.qatools.allure.junit.AllureRunListener {
-
     @Override
     public void testFailure(Failure failure){
-        takeScreenShot();
+        takeScreenshot();
         super.testFailure(failure);
     }
-
-    @Attachment(type = "image/png", value = "Скриншот при обшибке")
-    public byte[] takeScreenShot(){
-        return((TakesScreenshot) BaseSteps.getDriver()).getScreenshotAs(OutputType.BYTES);
+    @Attachment(type = "image/png", value = "Скриншот ошибки")
+    public byte[] takeScreenshot (){
+        return ((TakesScreenshot) BaseSteps.getDriver()).getScreenshotAs(OutputType.BYTES);
     }
 }
-

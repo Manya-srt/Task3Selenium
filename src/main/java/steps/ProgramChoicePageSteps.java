@@ -7,7 +7,7 @@ public class ProgramChoicePageSteps extends BaseSteps {
 
     @Step("Выбор суммы страховой защиты")
     public void selectSum (String menuItem){
-        new ProgramChoicePage(driver).summa.click();
+        new ProgramChoicePage(driver).selectSum(menuItem);
     }
 
     @Step("Нажатие кнопки - Оформить")

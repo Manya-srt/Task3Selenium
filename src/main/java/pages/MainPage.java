@@ -23,6 +23,6 @@ public class MainPage {
     }
 
     public void selectSubMenu(String menuItem) {
-        subMenu.findElement(By.xpath("//li//a[contains(text(),'"+menuItem+"')]")).click();
+        subMenu.findElement(By.xpath(".//a[contains(text(),'" + menuItem + "')]")).click();
     }
 }

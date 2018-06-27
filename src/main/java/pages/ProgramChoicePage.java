@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -21,5 +22,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
             Wait<WebDriver> wait = new WebDriverWait(driver,10, 1000);
             wait.until(ExpectedConditions.visibilityOf(summa));
             wait.until(ExpectedConditions.visibilityOf(issueButton));
+        }
+        public void selectSum(String menuItem) {
+            summa.findElement(By.xpath("//div[contains(text(),'" + menuItem + "')]")).click();
         }
     }

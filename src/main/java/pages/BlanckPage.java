@@ -4,12 +4,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BlanckPage {
-
-    public BlanckPage(WebDriver driver) {
-        PageFactory.initElements(driver, this);
-    }
 
     @FindBy(name = "insured0_surname")
     public WebElement insured0_surname;
@@ -44,7 +43,18 @@ public class BlanckPage {
     @FindBy(name = "issuePlace")
     public WebElement issuePlace;
 
+    @FindBy(xpath = "//span[contains(text(),'Продолжить')]")
+    public WebElement continueButton;
 
+    @FindBy(xpath = "//div[@ng-show='tryNext && myForm.$invalid'][text()='Заполнены не все обязательные поля']")
+    public WebElement errorMessage;
+
+    public BlanckPage (WebDriver driver) {
+        PageFactory.initElements(driver, this);
+        Wait<WebDriver> wait = new WebDriverWait(driver, 10, 1000);
+        wait.until(ExpectedConditions.visibilityOf(birthDate));
+        wait.until(ExpectedConditions.visibilityOf(continueButton));
+    }
 
     public void fillField(String fieldName, String value) {
         switch (fieldName) {
@@ -118,10 +128,4 @@ public class BlanckPage {
         }
         throw new AssertionError("Поле не объявлено на странице");
     }
-
-    @FindBy(xpath = "//span[contains(text(),'Продолжить')]")
-    public WebElement continueButton;
-
-    @FindBy(xpath = "//SPAN[@class='b-text-field-error'][text()='Номер телефона вводится в 10-ти значном формате']")
-    public WebElement phone;
 }
