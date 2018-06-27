@@ -37,9 +37,9 @@ public class BlanckPageSteps extends BaseSteps {
     }
 
     @Step("Выполнена проверка наличия ошибки на странице")
-    public void checkErrorMessageField(String expecteErrorMessage) {
+    public void checkErrorMessageField(String expectedErrorMessage) {
         String actualErrorMessage = new BlanckPage(driver).errorMessage.getText();
-        assertEquals(String.format("Заголовок равен [%s]. Ожидалось - [%s]", actualErrorMessage, expecteErrorMessage),
-                expecteErrorMessage, actualErrorMessage);
+        assertEquals(String.format("Заголовок равен [%s]. Ожидалось - [%s]", actualErrorMessage, expectedErrorMessage),
+                expectedErrorMessage, actualErrorMessage);
     }
 }

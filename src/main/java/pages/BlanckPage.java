@@ -46,7 +46,7 @@ public class BlanckPage {
     @FindBy(xpath = "//span[contains(text(),'Продолжить')]")
     public WebElement continueButton;
 
-    @FindBy(xpath = "//div[@ng-show='tryNext && myForm.$invalid'][text()='Заполнены не все обязательные поля']")
+    @FindBy(xpath = "//div[@ng-show='tryNext && myForm.$invalid']")
     public WebElement errorMessage;
 
     public BlanckPage (WebDriver driver) {
